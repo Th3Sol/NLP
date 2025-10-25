@@ -10,8 +10,11 @@ nltk.download('treebank')
 # Brown Corpus
 print("Brown Corpus Categories:")
 print(brown.categories())
+
 print("\nSample Words from 'news' category:")
 print(brown.words(categories='news')[:20])
+
+# OR (you can skip this ↓)
 
 # Penn Treebank Corpus
 print("\nPenn Treebank Sample Words:")
@@ -21,15 +24,18 @@ print(treebank.words()[:20])
 ### 2. Sentence & Word Segmentation
 
 ```python
+# Sentence segmentation
 import spacy
-from nltk.tokenize import word_tokenize, RegexpTokenizer
-
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm") # To install: python -m spacy download en_core_web_sm
 doc = nlp("I love coding. Practicing NLP every day helps.")
 print("Sentences:")
 for sent in doc.sents:
     print(sent)
 
+# OR (you can skip anyone  ↑ ↓)
+
+# Word segmentation
+from nltk.tokenize import word_tokenize, RegexpTokenizer
 text = "Hi! Let's go shopping."
 print("\nNLTK Word Tokenize:", word_tokenize(text))
 
@@ -62,20 +68,18 @@ for w in words:
 
 ```python
 import nltk, re, contractions
-from nltk.util import ngrams
 from nltk.tokenize import word_tokenize
 
 nltk.download('punkt')
 
 text = "I'm learning NLP!!! It's fun, isn't it?"
-text = contractions.fix(text)
-clean = re.sub(r'[^a-zA-Z\s]', '', text).lower()
-tokens = word_tokenize(clean)
+text = contractions.fix(text)                     # Expand contractions
+clean_text = re.sub(r'[^a-zA-Z\s]', '', text)     # Remove special characters
+tokens = word_tokenize(clean_text.lower())         # Tokenize and lowercase
 
+print("Original Text:", text)
+print("Cleaned Text:", clean_text)
 print("Tokens:", tokens)
-print("Unigrams:", list(ngrams(tokens,1)))
-print("Bigrams:", list(ngrams(tokens,2)))
-print("Trigrams:", list(ngrams(tokens,3)))
 ```
 
 ### 5. POS Tagging
@@ -95,18 +99,4 @@ print("Tokens:", tokens)
 print("\nPOS Tagging Results:")
 for word, tag in pos_tags:
     print(f"{word} -> {tag}")
-```
-
-### 6. Named Entity Recognition (NER)
-
-```python
-import spacy
-nlp = spacy.load("en_core_web_sm")
-
-text = "Barack Obama was born in Hawaii and worked for Google in the US."
-doc = nlp(text)
-
-print("Named Entities:")
-for ent in doc.ents:
-    print(ent.text, "->", ent.label_)
 ```
