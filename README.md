@@ -13,9 +13,11 @@ print(brown.categories())
 
 print("\nSample Words from 'news' category:")
 print(brown.words(categories='news')[:20])
-
+```
+```
 # OR (you can skip this ↓)
-
+```
+```python
 # Penn Treebank Corpus
 print("\nPenn Treebank Sample Words:")
 print(treebank.words()[:20])
@@ -31,9 +33,11 @@ doc = nlp("I love coding. Practicing NLP every day helps.")
 print("Sentences:")
 for sent in doc.sents:
     print(sent)
-
+```
+```
 # OR (you can skip anyone  ↑ ↓)
-
+```
+```python
 # Word segmentation
 from nltk.tokenize import word_tokenize, RegexpTokenizer
 text = "Hi! Let's go shopping."
